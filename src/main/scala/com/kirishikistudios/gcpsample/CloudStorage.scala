@@ -5,11 +5,11 @@ import scala.collection.JavaConverters._
 
 object CloudStorage extends App {
   val storage: Storage = StorageOptions.getDefaultInstance.getService
-  val bucketName = "yamada-test-201707192106"
-  val exist = storage.list().iterateAll().iterator().asScala.toList.find(_.toString == bucketName)
+  val bucketName = "yamada-test-201707192037"
+  val exist = storage.list().iterateAll().iterator().asScala.toList.find(_.getName == bucketName)
   exist match {
-    case Some(n) =>  createBucket(bucketName)
-    case None => println(s"Bucket $bucketName already exist.")
+    case Some(n) => println(s"Bucket $bucketName already exist.")
+    case None =>  createBucket(bucketName)
   }
 
   def createBucket(name: String) = {
